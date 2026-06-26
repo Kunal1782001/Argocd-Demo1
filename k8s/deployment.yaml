@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: Argocd-Demo1
+  labels:
+    app: Argocd-Demo1
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: Argocd-Demo1
+
+  template:
+    metadata:
+      labels:
+        app: Argocd-Demo1
+
+    spec:
+      containers:
+      - name: Argocd-Demo1
+        image: bhadekunal/Argocd-Demo1:1
+
+        imagePullPolicy: Always
+
+        ports:
+        - containerPort: 8080
+
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: dev
+
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"
