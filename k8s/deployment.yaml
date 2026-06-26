@@ -2,11 +2,13 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: argocd-demo1
+  namespace: default
   labels:
     app: argocd-demo1
 
 spec:
   replicas: 2
+
   selector:
     matchLabels:
       app: argocd-demo1
@@ -20,7 +22,9 @@ spec:
       containers:
       - name: argocd-demo1
 
+
         image: bhadekunal/argocd-demo1:5
+
 
 
         imagePullPolicy: Always
